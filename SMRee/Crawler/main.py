@@ -1,8 +1,6 @@
 import twint
 import os
 import pandas as pd
-import numpy as np
-import json
 
 def getKeyword(filename):
     keywords = []
@@ -50,6 +48,6 @@ if __name__=='__main__':
     outputName = 'non_disaster.json'
     sampleSize = 800
     outputSize = 400
-    
+
     crawl(getKeyword(filename), sampleSize)
     df_process(outputSize, outputName)
