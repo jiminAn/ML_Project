@@ -44,9 +44,9 @@ def df_process(outputSize, outputName):
     df.to_json(outputName, orient = 'records')
 
 if __name__=='__main__':
-    filename = 'non_disasterTag.csv'
-    outputName = 'non_disaster.json'
-    sampleSize = 800
+    filename = 'disasterTag.csv'
+    outputName = 'disaster.json'
+    sampleSize = 2000
     outputSize = 400
 
     crawl(getKeyword(filename), sampleSize)
