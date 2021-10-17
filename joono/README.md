@@ -30,7 +30,7 @@
 	- non_disaster-new.json/`part-00000-6e476317-c5de-479c-b362-f79c58bbbb24-c000.json`
 	- non_disaster-new.csv/`part-00000-93c57e8a-8615-4ee1-b61d-5228abd11d6a-c000.csv`
 
-+----+-----+-----+
-|hello|2.  | 3.  |
-+-----+----+-----+
+|hello|2  | 3.  |
+-----|----|-----|
+|ha | asdgf | asfd|
 4 directories, 10 files
