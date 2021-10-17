@@ -2,10 +2,16 @@
 
 ### Trainset Data Table
 
-| id | key | location | text |
------|-----|----------|------|
-0 - 400 | hashtags | null | tweet contents |
-	
+| id | key | location | text | label |
+-----|-----|----------|------|-------|
+0 - 400 | hashtags | null | tweet contents | 0 or 1|
+
+### Text Preprocessing Step
+> 1. Remove URL
+> 2. Remove Emojis
+> 3. Remove punctuations
+> 4. Remove whitespace (Strip)
+
 ### Data Structure
 	
 	data
