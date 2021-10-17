@@ -17,15 +17,15 @@
 ------------------------------
 ### 팀원들의 개인 코드 및 초안 버전 코드 저장 공간, 자세한 내용은 각 폴더의 README 파일을 참고
 - [SMRee(이승민)](https://github.com/jiminAn/ML_Project/tree/main/SMRee)
-       - `Cralwer`
-       - `Random_Forest`
-       - `catboost_info`
-       - `kaggle`
+  - `Cralwer`
+  - `Random_Forest`
+  - `catboost_info`
+  - `kaggle`
 - [jman(안지민)](https://github.com/jiminAn/ML_Project/tree/main/jman)
   - `catboost_info`
- - `code`
- - `practice_code`
- - `study`
+  - `code`
+  - `practice_code`
+  - `study`
 - [joono(김준호)](https://github.com/jiminAn/ML_Project/tree/main/joono)
- - `data`
+  - `data`
 - [wooseok(김우석)](https://github.com/jiminAn/ML_Project/tree/main/wooseok)
