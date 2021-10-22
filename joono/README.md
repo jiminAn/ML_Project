@@ -58,7 +58,7 @@ disasterDf = disasterDf.withColumn("text", remove_punctuation(disasterDf["text"]
 non_disasterDf = non_disasterDf.withColumn("text", remove_punctuation(non_disasterDf["text"]))
 ```
 
-> 4. Remove whitespace (Strip)
+> 4. Remove side whitespace (Strip)
 
 ```python
 strip_udf = udf(lambda x: x.strip(), StringType())
