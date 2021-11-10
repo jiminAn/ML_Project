@@ -9,7 +9,7 @@ Cancel changes
 | :---------: | :----------------------------------------------: | :---------------------------------: |
 |    [ElPlaguister(이승민)](https://github.com/ElPlaguister) | 팀장 |  데이터 수집  |
 |  [jiminAn(안지민)](https://github.com/jiminAn)   |  | 모델 성능 테스트   |
-|    [woosook0127(김우석)](https://github.com/woosook0127)   |   | 크롤링 시드값 생성 |
+|    [wooseok(김우석)](https://github.com/woosook0127)   |   | 크롤링 시드값 생성 |
 | [comeeasy(김준호)](https://github.com/comeeasy) |   |  데이터 전처리  |
 
 
