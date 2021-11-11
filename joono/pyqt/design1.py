@@ -13,6 +13,7 @@ class Ui_MainWindow(object):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(720, 480)
         MainWindow.setFocusPolicy(QtCore.Qt.ClickFocus)
+
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
@@ -21,6 +22,7 @@ class Ui_MainWindow(object):
         self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setObjectName("verticalLayout")
+
         self.tweet_editor = QtWidgets.QTextEdit(self.verticalLayoutWidget)
         self.tweet_editor.setEnabled(True)
         font = QtGui.QFont()
@@ -34,20 +36,24 @@ class Ui_MainWindow(object):
         self.tweet_editor.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
         self.tweet_editor.setObjectName("tweet_editor")
         self.verticalLayout.addWidget(self.tweet_editor)
+
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
         self.horizontalLayout.setContentsMargins(0, -1, -1, -1)
         self.horizontalLayout.setObjectName("horizontalLayout")
+
         self.answer_label = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.answer_label.setFrameShape(QtWidgets.QFrame.Box)
         self.answer_label.setAlignment(QtCore.Qt.AlignCenter)
         self.answer_label.setObjectName("answer_label")
+
         self.horizontalLayout.addWidget(self.answer_label)
-        self.predict_btn = QtWidgets.QPushButton(self.verticalLayoutWidget)
+        self.predict_btn = QtWidgets.QPushButton(self.verticalLayoutWidget, clicked=lambda: self.predict_clicked())
         self.predict_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.predict_btn.setObjectName("predict_btn")
         self.horizontalLayout.addWidget(self.predict_btn)
         self.verticalLayout.addLayout(self.horizontalLayout)
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 720, 24))
@@ -67,6 +73,15 @@ class Ui_MainWindow(object):
         self.answer_label.setText(_translate("MainWindow", "Answer"))
         self.predict_btn.setText(_translate("MainWindow", "Predict"))
 
+    def predict_clicked(self):
+        tweet = self.tweet_editor.toPlainText()
+
+        # predicted = model(tweet)
+        # self.tweet_editor.setText(
+        #     "Disaster" if predicted == 1 else "No Disaster"
+        # )
+
+        self.answer_label.setText(tweet)
 
 if __name__ == "__main__":
     import sys
