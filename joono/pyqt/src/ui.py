@@ -74,6 +74,7 @@ class Ui_MainWindow(object):
         self.keyword_line_editor.setAlignment(QtCore.Qt.AlignCenter)
         self.keyword_line_editor.setDragEnabled(True)
         self.keyword_line_editor.setObjectName("keyword_line_editor")
+        self.keyword_line_editor.returnPressed.connect(self.keyword_add2list)
         self.verticalLayout.addWidget(self.keyword_line_editor)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
@@ -154,7 +155,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Tweet Disaster"))
         self.keyword_line_editor.setText(_translate("MainWindow", "keyword"))
         self.keyword_add_btn.setText(_translate("MainWindow", "Add"))
         self.keyword_del_btn.setText(_translate("MainWindow", "Delete"))
