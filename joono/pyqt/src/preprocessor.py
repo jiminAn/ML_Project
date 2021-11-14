@@ -6,10 +6,12 @@ import string
 class TweetPreprocessor:
 
     def preprocessing(self, tweet):
-        tweet = self.remove_URL(tweet)
-        tweet = self.remove_html(tweet)
-        tweet = self.remove_punct(tweet)
-        tweet = self.clean_text(tweet)
+        tweet = {"origin": tweet, 'processed': tweet}
+
+        tweet["processed"] = self.remove_URL(tweet["processed"])
+        tweet["processed"] = self.remove_html(tweet["processed"])
+        tweet["processed"] = self.remove_punct(tweet["processed"])
+        tweet["processed"] = self.clean_text(tweet["processed"])
 
         return tweet
 

@@ -24,12 +24,12 @@ class DisasterModel(QObject):
     def prediction(self, tweet):
         tweet = self.preprocessor.preprocessing(tweet)
 
-        X_test_vector = self.loaded_vector.transform([tweet])  # Generate TFIDF vector
+        X_test_vector = self.loaded_vector.transform([tweet["processed"]])  # Generate TFIDF vector
         res = self.loaded_model.predict(X_test_vector.todense()) # input is string
 
         res = "Disaster" if res == 1 else "Not Disaster"
 
-        self.predictionDone.emit(tweet, res)
+        self.predictionDone.emit(tweet["origin"], res)
 
 
 
