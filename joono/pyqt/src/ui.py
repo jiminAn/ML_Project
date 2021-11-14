@@ -179,7 +179,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Tweet Disaster"))
-        self.keyword_line_editor.setText(_translate("MainWindow", "keyword"))
+        self.keyword_line_editor.setText(_translate("MainWindow", ""))
         self.keyword_add_btn.setText(_translate("MainWindow", "Add"))
         self.keyword_del_btn.setText(_translate("MainWindow", "Delete"))
         self.keyword_clear_btn.setText(_translate("MainWindow", "Clear All"))
@@ -204,6 +204,8 @@ class Ui_MainWindow(object):
         keywords = [self.keyword_list.item(i) for i in range(self.keyword_list.count())]
         keywords = ["#" + keyword.text() for keyword in keywords]
         self.keyword_label.setText(" ".join(keywords))
+
+        self.crawler.isRdy = True
 
 
     def add_tweet_widget(self, tweet, res):

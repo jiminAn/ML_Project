@@ -27,12 +27,18 @@ class TweetStream(QThread):
         self.isRdy = False
 
     def run(self) -> None:
+        # act like semaphore
+        while not self.isRdy:
+            pass
+
         while True:
             if self.isRdy:
-                for tweets in self.stream:
-                    tweet = json.dumps(tweets, ensure_ascii=False)
-                    print(tweet)
-                    self.takeTweetSignal.emit(str(tweet['text']))
+                try:
+                    for tweets in self.stream:
+                        tweet = json.dumps(tweets, ensure_ascii=False)
+                        self.takeTweetSignal.emit(str(tweet['text']))
+                except:
+                    pass
             else:
                 break
 
@@ -53,7 +59,9 @@ class TestTweetStream(QThread):
         self.testDsetPath = os.path.join("src", "data", "origin_test.csv")
 
     def run(self) -> None:
-        self.isRdy = True
+        # act like semaphore
+        while not self.isRdy:
+            pass
 
         while True:
             if self.isRdy:
@@ -66,7 +74,7 @@ class TestTweetStream(QThread):
                             pass
 
 
-                        self.msleep(1500)
+                        self.msleep(500)
             else:
                 break
 
