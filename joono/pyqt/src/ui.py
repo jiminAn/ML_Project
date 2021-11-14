@@ -129,8 +129,18 @@ class Ui_MainWindow(object):
         self.keyword_label.setObjectName("keyword_label")
         self.verticalLayout.addWidget(self.keyword_label)
 
-        self.formLayout = QtWidgets.QBoxLayout(QtWidgets.QBoxLayout.BottomToTop)
-        self.formLayout.setAlignment(QtCore.Qt.AlignCenter)
+        self.formLayout = QtWidgets.QHBoxLayout()
+        self.formLayout.setStretch(0, 0)
+
+        self.disaster_layout = QtWidgets.QBoxLayout(QtWidgets.QBoxLayout.BottomToTop)
+        self.disaster_layout.setAlignment(QtCore.Qt.AlignCenter | QtCore.Qt.AlignTop)
+
+        self.nondisaster_layout = QtWidgets.QBoxLayout(QtWidgets.QBoxLayout.BottomToTop)
+        self.nondisaster_layout.setAlignment(QtCore.Qt.AlignCenter | QtCore.Qt.AlignTop)
+
+        self.formLayout.addLayout(self.disaster_layout)
+        self.formLayout.addLayout(self.nondisaster_layout)
+
         self.groupbox = QtWidgets.QGroupBox("Realtime-tweet disaster")
         self.groupbox.setLayout(self.formLayout)
 
@@ -196,10 +206,13 @@ class Ui_MainWindow(object):
         self.keyword_label.setText(" ".join(keywords))
 
 
-    # @QtCore.pyqtSlot(str, str)
     def add_tweet_widget(self, tweet, res):
         widget = TweetWidget(time.ctime(), tweet, res, self.keyword_label.text())
-        self.formLayout.addWidget(widget)
+
+        if res == "Disaster":
+            self.disaster_layout.addWidget(widget)
+        else:
+            self.nondisaster_layout.addWidget(widget)
 
 if __name__ == "__main__":
     import sys

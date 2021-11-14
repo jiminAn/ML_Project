@@ -4,7 +4,6 @@ import json
 
 from PyQt5.QtCore import QThread
 from PyQt5.QtCore import pyqtSignal
-from src.tweet_model import DisasterModel
 
 class TweetStream(QThread):
     takeTweetSignal = pyqtSignal(str)
