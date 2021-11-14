@@ -113,40 +113,29 @@
        </widget>
       </item>
       <item>
-       <widget class="QListWidget" name="tweet_widget_list">
-        <property name="acceptDrops">
+       <widget class="QScrollArea" name="scrollArea">
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <property name="widgetResizable">
          <bool>true</bool>
         </property>
-        <property name="autoScroll">
-         <bool>true</bool>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
         </property>
-        <property name="dragEnabled">
-         <bool>true</bool>
-        </property>
-        <property name="dragDropOverwriteMode">
-         <bool>true</bool>
-        </property>
-        <property name="dragDropMode">
-         <enum>QAbstractItemView::InternalMove</enum>
-        </property>
-        <property name="verticalScrollMode">
-         <enum>QAbstractItemView::ScrollPerPixel</enum>
-        </property>
-        <property name="movement">
-         <enum>QListView::Snap</enum>
-        </property>
-        <property name="isWrapping" stdset="0">
-         <bool>true</bool>
-        </property>
-        <property name="resizeMode">
-         <enum>QListView::Adjust</enum>
-        </property>
-        <property name="itemAlignment">
-         <set>Qt::AlignHCenter</set>
-        </property>
-        <property name="sortingEnabled">
-         <bool>true</bool>
-        </property>
+        <widget class="QWidget" name="scrollAreaWidgetContents">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>690</width>
+           <height>414</height>
+          </rect>
+         </property>
+        </widget>
        </widget>
       </item>
      </layout>

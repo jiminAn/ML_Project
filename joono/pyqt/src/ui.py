@@ -8,12 +8,14 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+import src.crawler as crawler
 import time
 
 
 class TweetWidget(QtWidgets.QWidget):
-    def __init__(self, time, tweet, keywords):
+    def __init__(self, time, tweet, prediction, keywords):
         QtWidgets.QWidget.__init__(self, flags=QtCore.Qt.Widget)
+
         self.layout = QtWidgets.QVBoxLayout()
         self.layout.setStretch(1, 2)
         self.layout.setStretch(2, 1)
@@ -25,6 +27,8 @@ class TweetWidget(QtWidgets.QWidget):
         self.layout.addWidget(self.tweet_widget_time)
 
         self.horiz_layout = QtWidgets.QHBoxLayout()
+        self.horiz_layout.setStretch(0, 0)
+        self.horiz_layout.setAlignment(QtCore.Qt.AlignCenter)
 
         self.tweet_widget_tweet = QtWidgets.QLabel()
         self.tweet_widget_tweet.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -38,7 +42,13 @@ class TweetWidget(QtWidgets.QWidget):
         self.tweet_widget_prediction.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.tweet_widget_prediction.setAlignment(QtCore.Qt.AlignCenter)
         self.tweet_widget_prediction.setObjectName("tweet_widget_prediction")
-        self.tweet_widget_prediction.setText("Prediction")
+        self.tweet_widget_prediction.setText(prediction)
+
+        if prediction == "Disaster":
+            self.tweet_widget_prediction.setStyleSheet("color : red;")
+        else:
+            self.tweet_widget_prediction.setStyleSheet("color : green;")
+
         self.horiz_layout.addWidget(self.tweet_widget_prediction)
         self.horiz_layout.setStretch(3, 1)
 
@@ -54,6 +64,9 @@ class TweetWidget(QtWidgets.QWidget):
         self.setSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
 
 class Ui_MainWindow(object):
+    def __init__(self, crawler: crawler.TestTweetStream):
+        self.crawler = crawler
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(720, 720)
@@ -64,6 +77,7 @@ class Ui_MainWindow(object):
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
         self.keyword_line_editor = QtWidgets.QLineEdit(self.centralwidget)
+
         font = QtGui.QFont()
         font.setPointSize(18)
         self.keyword_line_editor.setFont(font)
@@ -116,6 +130,7 @@ class Ui_MainWindow(object):
         self.verticalLayout.addWidget(self.keyword_label)
 
         self.formLayout = QtWidgets.QBoxLayout(QtWidgets.QBoxLayout.BottomToTop)
+        self.formLayout.setAlignment(QtCore.Qt.AlignCenter)
         self.groupbox = QtWidgets.QGroupBox("Realtime-tweet disaster")
         self.groupbox.setLayout(self.formLayout)
 
@@ -129,8 +144,6 @@ class Ui_MainWindow(object):
         self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 690, 414))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.scrollArea.setWidget(self.groupbox)
-        self.scrollArea.setWidgetResizable(True)
-        self.scrollArea.setFixedWidth(700)
 
         self.scrollArea.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
         self.scrollArea.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
@@ -179,20 +192,18 @@ class Ui_MainWindow(object):
 
     def keyword_update(self):
         keywords = [self.keyword_list.item(i) for i in range(self.keyword_list.count())]
-        self.keyword_label.setText(" ".join(["#" + kw.text() for kw in keywords]))
+        keywords = ["#" + keyword.text() for keyword in keywords]
+        self.keyword_label.setText(" ".join(keywords))
 
-        self.add_tweet_widget(
-            TweetWidget(time.ctime(),
-                      "Unix 운영체제에서 사용자 명령을 읽어서 수행시키는 명령어 처리 프로그램(command interpreter)",
-                      self.keyword_label.text()
-            )
-        )
 
-    def add_tweet_widget(self, tweet):
-        self.formLayout.addWidget(tweet)
+    # @QtCore.pyqtSlot(str, str)
+    def add_tweet_widget(self, tweet, res):
+        widget = TweetWidget(time.ctime(), tweet, res, self.keyword_label.text())
+        self.formLayout.addWidget(widget)
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()

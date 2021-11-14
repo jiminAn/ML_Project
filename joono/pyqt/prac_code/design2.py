@@ -62,6 +62,7 @@ class Ui_MainWindow(object):
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
         self.keyword_line_editor = QtWidgets.QLineEdit(self.centralwidget)
+
         font = QtGui.QFont()
         font.setPointSize(18)
         self.keyword_line_editor.setFont(font)
@@ -75,6 +76,7 @@ class Ui_MainWindow(object):
         self.verticalLayout.addWidget(self.keyword_line_editor)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+
         self.keyword_add_btn = QtWidgets.QPushButton(self.centralwidget, clicked=lambda: self.keyword_add2list())
         self.keyword_add_btn.setObjectName("keyword_add_btn")
         self.horizontalLayout_2.addWidget(self.keyword_add_btn)
@@ -93,6 +95,7 @@ class Ui_MainWindow(object):
         self.verticalLayout.addWidget(self.keyword_list)
         self.keyword_label = QtWidgets.QLabel(self.centralwidget)
         self.keyword_label.setEnabled(False)
+
         font = QtGui.QFont()
         font.setPointSize(18)
         self.keyword_label.setFont(font)
@@ -106,12 +109,14 @@ class Ui_MainWindow(object):
         self.tweet_widget_list = QtWidgets.QListWidget(self.centralwidget)
         self.tweet_widget_list.setAcceptDrops(True)
         self.tweet_widget_list.setObjectName("tweet_widget_list")
-        self.tweet_widget_list.setAutoScroll(False)
-        self.verticalLayout.addWidget(self.tweet_widget_list)
+        self.tweet_widget_list.setAutoScroll(True)
+        self.tweet_widget_list.setLayout(QtWidgets.QBoxLayout(QtWidgets.QBoxLayout.BottomToTop))
 
+        self.verticalLayout.addWidget(self.tweet_widget_list)
         self.verticalLayout.setStretch(2, 1)
         self.verticalLayout.setStretch(4, 4)
         self.horizontalLayout.addLayout(self.verticalLayout)
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 720, 24))
@@ -127,12 +132,27 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Tweet Disaster Classifier"))
         self.keyword_add_btn.setText(_translate("MainWindow", "Add"))
         self.keyword_del_btn.setText(_translate("MainWindow", "Delete"))
         self.keyword_clear_btn.setText(_translate("MainWindow", "Clear All"))
         self.keyword_update_btn.setText(_translate("MainWindow", "Update"))
         self.keyword_label.setText(_translate("MainWindow", "keywords"))
+
+    def add_tweet_widget(self, tweet):
+        # _item = QtWidgets.QListWidgetItem(self.tweet_widget_list)
+        # _item.setSizeHint(tweet.sizeHint())
+        #
+        # self.tweet_widget_list.insertItem(0, _item)
+        # self.tweet_widget_list.setItemWidget(_item, tweet)
+        #
+        # self.tweet_widget_list.insertItem(0, time.ctime())
+
+        item = QtWidgets.QListWidgetItem(self.tweet_widget_list)
+        item.setText(time.ctime())
+
+        self.tweet_widget_list.insertItem(0, item)
+
 
     def keyword_add2list(self):
         keyword = self.keyword_line_editor.text()
@@ -140,19 +160,6 @@ class Ui_MainWindow(object):
         if keyword != "":
             self.keyword_list.addItem(keyword)
         self.keyword_line_editor.setText("")
-
-        item = QtWidgets.QListWidgetItem(self.tweet_widget_list)
-        custom_widget = TweetWidget(time.ctime(),
-                             "Unix 운영체제에서 사용자 명령을 읽어서 수행시키는 명령어 처리 프로그램(command interpreter)",
-                             self.keyword_label.text())
-
-        item.setSizeHint(custom_widget.sizeHint())
-        self.tweet_widget_list.insertItem(0, item)
-        self.tweet_widget_list.setItemWidget(item, custom_widget)
-
-
-        for i in range(10):
-            self.tweet_widget_list.insertItem(0, str(i))
 
     def keyword_delete(self):
         keyword_cur_row = self.keyword_list.currentRow()
@@ -165,6 +172,13 @@ class Ui_MainWindow(object):
     def keyword_update(self):
         keywords = [self.keyword_list.item(i) for i in range(self.keyword_list.count())]
         self.keyword_label.setText(" ".join(["#" + kw.text() for kw in keywords]))
+
+        self.add_tweet_widget(
+            TweetWidget(time.ctime(),
+                      "Unix 운영체제에서 사용자 명령을 읽어서 수행시키는 명령어 처리 프로그램(command interpreter)",
+                      self.keyword_label.text()
+            )
+        )
 
 if __name__ == "__main__":
     import sys
