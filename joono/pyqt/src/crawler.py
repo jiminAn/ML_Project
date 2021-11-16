@@ -11,19 +11,18 @@ class TweetStream(QThread):
     def __init__(self):
         super().__init__()
 
-        self.twitter_consumer_key = ""
-        self.twitter_consumer_secret = ""
-        self.twitter_access_token = ""
-        self.twitter_access_secret = ""
+        self.twitter_consumer_key = "..."
+        self.twitter_consumer_secret = "..."
+        self.twitter_access_token = "...-..."
+        self.twitter_access_secret = "..."
 
-        self.keywords = ["#larva"]
+        self.keywords = ["lol", "faker"]
 
         self.twitter_api = twitter.Api(consumer_key=self.twitter_consumer_key,
                                        consumer_secret=self.twitter_consumer_secret,
                                        access_token_key=self.twitter_access_token,
                                        access_token_secret=self.twitter_access_secret)
 
-        self.stream = self.twitter_api.GetStreamFilter(track=self.keywords)
         self.isRdy = False
 
     def run(self) -> None:
@@ -34,11 +33,13 @@ class TweetStream(QThread):
         while True:
             if self.isRdy:
                 try:
-                    for tweets in self.stream:
-                        tweet = json.dumps(tweets, ensure_ascii=False)
-                        self.takeTweetSignal.emit(str(tweet['text']))
-                except:
-                    pass
+                    self.sleep(2)
+
+                    stream = self.twitter_api.GetStreamFilter(track=self.keywords)
+                    for tweets in stream:
+                        self.takeTweetSignal.emit(str(tweets['text']))
+                except Exception as e:
+                    print(e)
             else:
                 break
 

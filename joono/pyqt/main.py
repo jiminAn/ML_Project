@@ -9,7 +9,7 @@ import src.tweet_model as tweet_model
 if __name__ == "__main__":
 
     model = tweet_model.DisasterModel()
-    crawler = crawler.TestTweetStream()
+    crawler = crawler.TweetStream()
     ui = ui.Ui_MainWindow(crawler)
 
     crawler.takeTweetSignal.connect(model.prediction)

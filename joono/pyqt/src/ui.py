@@ -202,8 +202,10 @@ class Ui_MainWindow(object):
 
     def keyword_update(self):
         keywords = [self.keyword_list.item(i) for i in range(self.keyword_list.count())]
-        keywords = ["#" + keyword.text() for keyword in keywords]
+        keywords = [keyword.text() for keyword in keywords]
+
         self.keyword_label.setText(" ".join(keywords))
+        self.crawler.keywords = keywords
 
         self.crawler.isRdy = True
 
