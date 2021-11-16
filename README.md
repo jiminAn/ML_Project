@@ -35,9 +35,11 @@
 
 
 
-## GUI 기능 소개
+## GUI 
 ### 해당 키워드의 실시간 트위터 게시글을 불러와서 disaster(1)/non-disaster(1)을 판별합니다
+<img src='img/1.gif' align="right" width=1000>
 
+## GUI 기능 소개
 ------
 
 ### 기능1 UPDATE: 키워드 추가로 해시태그 별 (non-disaster/disaster) 게시글 보기 
