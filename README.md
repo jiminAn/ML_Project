@@ -1,23 +1,19 @@
-# Natural Language Processing with Disaster Tweets
+# 실시간 트위터 데이터로 재난/비재난 여부를 판별하는 재난 알림이 
 ### 2021-fall Machine Learning Project
 
 # 주제 소개
 
 ------
 
-- [Kaggle: Natural Language Processing with Disaster Tweets](https://www.kaggle.com/c/nlp-getting-started) 
-
-- 트위터의 게시글 데이터로 재난/비재난 구분하기
-
-- [기존데이터와 데이터 추가 학습 시 성능 분석 진행](#1-기존데이터와-데이터-추가-학습-시-성능-분석)
-
-- [텍스트 벡터화 방법 별 성능 분석 진행](#2-텍스트-벡터화-방법-별-성능-분석)
-
-  - Word2Vec, WordCount, TF-IDF
-
-- [이진분류기 모델 별 성능 분석 진행](#3-이진분류기-모델-별-성능-분석)
-
-  - RidgeClassifierCV, SGDClassifier, BernoulliNB, RandomForestClassifier
+- 실시간 트위터의 데이터로 재난/비재난 구분하기
+  - 기존 데이터 출처 : [Kaggle Contest: Natural Language Processing with Disaster Tweets](https://www.kaggle.com/c/nlp-getting-started) 
+  - 추가 데이터 출처 : [Tweeter](https://twitter.com/tweeter)
+- 재난/비재난 이진 분류기 모델 학습
+  - [기존데이터와 데이터 추가 학습 시 성능 분석 진행](#1-기존데이터와-데이터-추가-학습-시-성능-분석)
+  - [텍스트 벡터화 방법 별 성능 분석 진행](#2-텍스트-벡터화-방법-별-성능-분석)
+    - Word2Vec, WordCount, TF-IDF
+  - [이진분류기 모델 별 성능 분석 진행](#3-이진분류기-모델-별-성능-분석)
+    - RidgeClassifierCV, SGDClassifier, BernoulliNB, RandomForestClassifier
 
   
   
@@ -40,6 +36,7 @@
 
 
 ## GUI 기능 소개
+### 해당 키워드의 실시간 트위터 게시글을 불러와서 disaster(1)/non-disaster(1)을 판별합니다
 
 ------
 
