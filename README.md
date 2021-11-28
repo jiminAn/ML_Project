@@ -8,6 +8,9 @@
 - 실시간 트위터의 데이터로 재난/비재난 구분하기
   - 기존 데이터 출처 : [Kaggle Contest: Natural Language Processing with Disaster Tweets](https://www.kaggle.com/c/nlp-getting-started) 
   - 추가 데이터 출처 : [Tweeter](https://twitter.com/tweeter)
+
+# CONTENTS
+------
 - 재난/비재난 이진 분류기 모델 학습
   - [기존데이터와 데이터 추가 학습 시 성능 분석 진행](#1-기존데이터와-데이터-추가-학습-시-성능-분석)
   - [텍스트 벡터화 방법 별 성능 분석 진행](#2-텍스트-벡터화-방법-별-성능-분석)
